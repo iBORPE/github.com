@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sortowanie</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript">
+
+
+        function randomize(tab1){
+        var Z = 40000;
+        var tab1 = [Z];    
+
+        
+        for (i = 0; i < Z; i++) {
+            tab1[i] = Math.floor(Math.random() * 10000 + 1)
+        }
+        return tab1;
+    }
+
+        function bubble(tab1)
+        {
+        var tab1=randomize(tab1);
+       
+        var d1 = new Date();
+        var data1 = d1.getTime()
+        var x;
+
+        for (i = 0; i < tab1.length; i++) {
+            for (j = 1; j < tab1.length; j++) {
+                if (tab1[j - 1] > tab1[j]) {
+                    x = tab1[j]
+                    tab1[j] = tab1[j - 1]
+                    tab1[j - 1] = x
+                }
+            }
+        }
+
+        var d2 = new Date();
+        var data2 = d2.getTime()
+        var suma1 = data2 - data1
+        
+        alert("Sortowanie bąbelkowe trwalo: " + suma1 + " Milisekundy ==> " + suma1 / 1000 + "sekund")
+        
+    }
+
+
+
+      function insert(tab1){
+        var tab1=randomize(tab1);
+        var d3 = new Date();
+        var data3 = d3.getTime()
+        var a, b
+
+        for (j = tab1.length - 2; j >= 0; j--) {
+            a = tab1[j];
+            b = j + 1;
+            while ((b < tab1.length) && (a > tab1[b])) {
+                tab1[b - 1] = tab1[b];
+                b++;
+            }
+            tab1[b - 1] = a;
+        }
+
+        var d4 = new Date();
+        var data4 = d4.getTime()
+        var suma2 = data4 - data3
+        document.write("Sortowanie przez wstawianie trwalo: " + suma2 + " Milisekundy ==> " + suma2 / 1000 + "sekund")   
+    }
+
+    var tab1;
+  
+   
+
+    </script>
+</head>
+
+<body>
+<a  onclick="bubble(tab1)"><div id="bubble">Sortowanie babelkowe</div></a>
+
+<br>
+<a  onclick="insert(tab1)"><div id="insert">Sortowanie przez wstawianie</div></a>
+</body>
+
+</html>
