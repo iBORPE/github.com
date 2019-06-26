@@ -1,28 +1,25 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Sortowanie</title>
+    <title>Sort</title>
     <link rel="stylesheet" href="style.css">
     <script type="text/javascript">
         function randomize(tab1) {
-            var Z = 40000;
+            var Z = 10000000;
             var tab1 = [Z];
-
-
             for (i = 0; i < Z; i++) {
                 tab1[i] = Math.floor(Math.random() * 10000 + 1)
             }
             return tab1;
         }
-
         function bubble(tab1) {
             var tab1 = randomize()
             var d1 = new Date();
-            var data1 = d1.getTime()
+            var date1 = d1.getTime()
             var x;
-
             for (i = 0; i < tab1.length; i++) {
                 for (j = 1; j < tab1.length; j++) {
                     if (tab1[j - 1] > tab1[j]) {
@@ -32,23 +29,16 @@
                     }
                 }
             }
-
             var d2 = new Date();
-            var data2 = d2.getTime()
-            var suma1 = data2 - data1
-
-            alert("Sortowanie bąbelkowe trwalo: " + suma1 + " Milisekundy ==> " + suma1 / 1000 + "sekund")
-
+            var date2 = d2.getTime()
+            var sum1 = date2 - date1
+            alert("bubble sort lasted for: " + sum1 + " Milliseconds ==> " + sum1 / 1000 + "seconds")
         }
-
-
-
         function insert(tab1) {
             var tab1 = randomize()
             var d3 = new Date();
-            var data3 = d3.getTime()
+            var date3 = d3.getTime()
             var a, b
-
             for (j = tab1.length - 2; j >= 0; j--) {
                 a = tab1[j];
                 b = j + 1;
@@ -58,73 +48,41 @@
                 }
                 tab1[b - 1] = a;
             }
-
-
-
-
-
-
-
             var d4 = new Date();
-            var data4 = d4.getTime()
-            var suma2 = data4 - data3
-            alert("Sortowanie przez wstawianie trwalo: " + suma2 + " Milisekundy ==> " + suma2 / 1000 +
-                "sekund")
+            var date4 = d4.getTime()
+            var sum2 = date4 - date3
+            alert("Insert Sort lasted for: " + sum2 + " Milliseconds ==> " + sum2 / 1000 +
+                "seconds")
         }
-
-
-
-
         function quicksort() {
-
-
-
-
-
-
-
         }
-
-
-
-
-
-
-
-
         function main() {
             var i, t;
             var d5 = new Date();
-            var data5 = d5.getTime()
+            var date5 = d5.getTime()
             var tab1 = randomize(tab1);
             var N = tab1.length;
             var p = new Array(N);
-
             for (i = 0; i < N; i++) {
                 tab1[i] = Math.floor(Math.random() * 10000 + 1)
             }
-
             MergeSort(0, N - 1);
-
-
-
-            function MergeSort(lewy, prawy) {
-                var srodek, i1, i2, i;
-
-                srodek = Math.floor((lewy + prawy + 1) / 2);
-                if (srodek - lewy > 1) MergeSort(lewy, srodek - 1);
-                if (prawy - srodek > 0) MergeSort(srodek, prawy);
-                i1 = lewy;
-                i2 = srodek;
-                for (i = lewy; i <= prawy; i++)
-                    p[i] = ((i1 == srodek) || ((i2 <= prawy) && (tab1[i1] > tab1[i2]))) ? tab1[i2++] : tab1[i1++];
-                for (i = lewy; i <= prawy; i++) tab1[i] = p[i];
+            function MergeSort(left, right) {
+                var cntr, i1, i2, i;
+                cntr = Math.floor((left + right + 1) / 2);
+                if (cntr - left > 1) MergeSort(left, cntr - 1);
+                if (right - cntr > 0) MergeSort(cntr, right);
+                i1 = left;
+                i2 = cntr;
+                for (i = left; i <= right; i++)
+                    p[i] = ((i1 == cntr) || ((i2 <= right) && (tab1[i1] > tab1[i2]))) ? tab1[i2++] : tab1[i1++];
+                for (i = left; i <= right; i++) tab1[i] = p[i];
             }
             var d6 = new Date();
-            var data6 = d6.getTime()
-            var suma3 = data6 - data5;
-            alert("Sortowanie przez wstawianie trwalo: " + suma3 + " Milisekundy ==> " + suma3 / 1000 +
-                "sekund")
+            var date6 = d6.getTime()
+            var sum3 = date6 - date5;
+            alert("Merge Sort lasted for: " + sum3 + " Milliseconds ==> " + sum3 / 1000 +
+                "seconds")
         }
     </script>
 </head>
@@ -147,3 +105,6 @@
 </body>
 
 </html>
+
+
+
