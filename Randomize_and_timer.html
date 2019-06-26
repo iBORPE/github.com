@@ -77,53 +77,55 @@
 
         function quicksort() {
 
+
+
+
+
+
+
         }
 
-        
-           
-               
-                
-                
-               
-                
-                function main()
-                {
-                  var i,t;
-                  var d5 = new Date();
+
+
+
+
+
+
+
+        function main() {
+            var i, t;
+            var d5 = new Date();
             var data5 = d5.getTime()
-                  var tab1 = randomize(tab1);
-                var N = tab1.length; 
-                var p = new Array(N);
-                
-                  for (i = 0; i < N; i++) {
+            var tab1 = randomize(tab1);
+            var N = tab1.length;
+            var p = new Array(N);
+
+            for (i = 0; i < N; i++) {
                 tab1[i] = Math.floor(Math.random() * 10000 + 1)
             }
-                  
-                  MergeSort(0,N-1);
-                
-                 
 
-                      function MergeSort(lewy, prawy)
-                {
-                  var srodek,i1,i2,i;
-                
-                  srodek = Math.floor((lewy + prawy + 1) / 2);
-                  if(srodek - lewy > 1) MergeSort(lewy, srodek - 1);
-                  if(prawy - srodek > 0) MergeSort(srodek, prawy);
-                  i1 = lewy; i2 = srodek;
-                  for(i = lewy; i <= prawy; i++)
+            MergeSort(0, N - 1);
+
+
+
+            function MergeSort(lewy, prawy) {
+                var srodek, i1, i2, i;
+
+                srodek = Math.floor((lewy + prawy + 1) / 2);
+                if (srodek - lewy > 1) MergeSort(lewy, srodek - 1);
+                if (prawy - srodek > 0) MergeSort(srodek, prawy);
+                i1 = lewy;
+                i2 = srodek;
+                for (i = lewy; i <= prawy; i++)
                     p[i] = ((i1 == srodek) || ((i2 <= prawy) && (tab1[i1] > tab1[i2]))) ? tab1[i2++] : tab1[i1++];
-                  for(i = lewy; i <= prawy; i++) tab1[i] = p[i];
-                }
-                var d6 = new Date();
+                for (i = lewy; i <= prawy; i++) tab1[i] = p[i];
+            }
+            var d6 = new Date();
             var data6 = d6.getTime()
-            var suma3 = data6 - data5
+            var suma3 = data6 - data5;
             alert("Sortowanie przez wstawianie trwalo: " + suma3 + " Milisekundy ==> " + suma3 / 1000 +
                 "sekund")
-                }
-                
-
-        
+        }
     </script>
 </head>
 
@@ -141,6 +143,7 @@
     <a onclick="main()">
         <div id="mergesort">Sortowanie przez scalanie</div>
     </a>
+
 </body>
 
 </html>
