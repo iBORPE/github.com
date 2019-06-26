@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,8 +14,15 @@
             }
             return tab1;
         }
+
+        function rand(tab1) {
+            var tab1 = randomize();
+            return tab1;
+
+        }
+
         function bubble(tab1) {
-            var tab1 = randomize()
+            var tab1 = rand()
             var d1 = new Date();
             var date1 = d1.getTime()
             var x;
@@ -32,10 +38,12 @@
             var d2 = new Date();
             var date2 = d2.getTime()
             var sum1 = date2 - date1
-            alert("bubble sort lasted for: " + sum1 + " Milliseconds ==> " + sum1 / 1000 + "seconds")
+            var result1 = document.getElementById("result1").innerHTML = "Bubble sort lasted for: " + sum1 +
+                " Milliseconds ==> " + sum1 / 1000 + "seconds"
         }
+
         function insert(tab1) {
-            var tab1 = randomize()
+            var tab1 = rand()
             var d3 = new Date();
             var date3 = d3.getTime()
             var a, b
@@ -51,22 +59,85 @@
             var d4 = new Date();
             var date4 = d4.getTime()
             var sum2 = date4 - date3
-            alert("Insert Sort lasted for: " + sum2 + " Milliseconds ==> " + sum2 / 1000 +
-                "seconds")
+            var result2 = document.getElementById("result2").innerHTML = "Insert Sort lasted for: " + sum2 +
+                " Milliseconds ==> " + sum2 / 1000 +
+                "seconds"
         }
-        function quicksort() {
+
+
+
+
+        function qs_swap(tab1, i_p, i_k) {
+            var tab1 = rand(tab1);
+
+            var temp = tab1[i_p];
+            tab1[i_p] = tab1[i_k];
+            tab1[i_k] = temp;
         }
+
+        function partition(tab1, left, right) {
+            var tab1 = rand(tab1);
+            var cntr = tab1[Math.floor((right + left) / 2)],
+                i = left,
+                j = right;
+            while (i <= j) {
+                while (tab1[i] < cntr) {
+                    i++;
+                }
+                while (tab1[j] > cntr) {
+                    j--;
+                }
+                if (i <= j) {
+                    qs_swap(tab1, i, j);
+                    i++;
+                    j--;
+                }
+            }
+            return i;
+        }
+
+        function quickSort(tab1, left, right) {
+            var d7 = new Date();
+            var date7 = d7.getTime()
+            var tab1 = rand(tab1);
+            var index;
+            if (tab1.length > 1) {
+                index = partition(tab1, left, right);
+                if (left < index - 1) {
+                    quickSort(tab1, left, index - 1);
+                }
+                if (index < right) {
+                    quickSort(tab1, index, right);
+                }
+            }
+
+            var d8 = new Date();
+            var date8 = d8.getTime()
+            var sum4 = date8 - date7;
+            var result4 = document.getElementById("result4").innerHTML = "Quick Sort lasted for: " + sum4 +
+                " Milliseconds ==> " + sum4 / 1000 +
+                "seconds"
+
+
+
+        }
+
+
+
+
+
         function main() {
             var i, t;
             var d5 = new Date();
             var date5 = d5.getTime()
-            var tab1 = randomize(tab1);
+            var tab1 = rand(tab1);
             var N = tab1.length;
             var p = new Array(N);
             for (i = 0; i < N; i++) {
                 tab1[i] = Math.floor(Math.random() * 10000 + 1)
             }
             MergeSort(0, N - 1);
+
             function MergeSort(left, right) {
                 var cntr, i1, i2, i;
                 cntr = Math.floor((left + right + 1) / 2);
@@ -81,30 +152,38 @@
             var d6 = new Date();
             var date6 = d6.getTime()
             var sum3 = date6 - date5;
-            alert("Merge Sort lasted for: " + sum3 + " Milliseconds ==> " + sum3 / 1000 +
-                "seconds")
+
+            var result3 = document.getElementById("result3").innerHTML = "Merge Sort lasted for: " + sum3 +
+                " Milliseconds ==> " + sum3 / 1000 +
+                "seconds";
         }
     </script>
 </head>
 
 <body>
-
+    <br>
     <a onclick="bubble()">
-        <div id="bubble">Sortowanie babelkowe</div>
-    </a>
-
+        <div id="bubble">Bubble Sort
+    </a></div>
+    <div id="result1"></div>
     <br>
     <a onclick="insert()">
-        <div id="insert">Sortowanie przez wstawianie</div>
-    </a>
+        <div id="insert">Insert Sort
+    </a> </div>
+
+    <div id="result2"></div>
     <br>
     <a onclick="main()">
-        <div id="mergesort">Sortowanie przez scalanie</div>
-    </a>
+        <div id="mergesort">Merge Sort
+    </a></div>
+    <div id="result3"></div>
+    <br>
+    <a onclick="quickSort()">
+        <div id="quicksort">Quick Sort
+    </a></div>
+    <div id="result4"></div>
+
 
 </body>
 
 </html>
-
-
-
