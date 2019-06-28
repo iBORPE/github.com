@@ -6,89 +6,89 @@
     <title>Sort</title>
     <link rel="stylesheet" href="style.css">
     <script type="text/javascript">
-        function randomize(tab1) {
-            var Z = 10000000;
-            var tab1 = [Z];
-            for (i = 0; i < Z; i++) {
-                tab1[i] = Math.floor(Math.random() * 10000 + 1)
+        function randomize(SortedArray) {
+            var ArraySize = 10000000;
+            var SortedArray = [ArraySize];
+            for (i = 0; i < ArraySize; i++) {
+                SortedArray[i] = Math.floor(Math.random() * 10000 + 1)
             }
-            return tab1;
+            return SortedArray;
         }
 
-        function rand(tab1) {
-            var tab1 = randomize();
-            return tab1;
+        function rand(SortedArray) {
+            var SortedArray = randomize();
+            return SortedArray;
 
         }
 
-        function bubble(tab1) {
-            var tab1 = rand()
+        function bubble(SortedArray) {
+            var SortedArray = rand()
             var d1 = new Date();
-            var date1 = d1.getTime()
+            var ExampleDate1 = d1.getTime()
             var x;
-            for (i = 0; i < tab1.length; i++) {
-                for (j = 1; j < tab1.length; j++) {
-                    if (tab1[j - 1] > tab1[j]) {
-                        x = tab1[j]
-                        tab1[j] = tab1[j - 1]
-                        tab1[j - 1] = x
+            for (i = 0; i < SortedArray.length; i++) {
+                for (j = 1; j < SortedArray.length; j++) {
+                    if (SortedArray[j - 1] > SortedArray[j]) {
+                        x = SortedArray[j]
+                        SortedArray[j] = SortedArray[j - 1]
+                        SortedArray[j - 1] = x
                     }
                 }
             }
             var d2 = new Date();
-            var date2 = d2.getTime()
-            var sum1 = date2 - date1
-            var result1 = document.getElementById("result1").innerHTML = "Bubble sort lasted for: " + sum1 +
-                " Milliseconds ==> " + sum1 / 1000 + "seconds"
+            var ExampleDate2 = d2.getTime()
+            var FinalDate1 = ExampleDate2 - ExampleDate1
+            var BubbleResult = document.getElementById("result1").innerHTML = "Bubble sort lasted for: " + FinalDate1 +
+                " Milliseconds ==> " + FinalDate1 / 1000 + "seconds"
         }
 
-        function insert(tab1) {
-            var tab1 = rand()
+        function insert(SortedArray) {
+            var SortedArray = rand()
             var d3 = new Date();
-            var date3 = d3.getTime()
+            var ExampleDate3 = d3.getTime()
             var a, b
-            for (j = tab1.length - 2; j >= 0; j--) {
-                a = tab1[j];
+            for (j = SortedArray.length - 2; j >= 0; j--) {
+                a = SortedArray[j];
                 b = j + 1;
-                while ((b < tab1.length) && (a > tab1[b])) {
-                    tab1[b - 1] = tab1[b];
+                while ((b < SortedArray.length) && (a > SortedArray[b])) {
+                    SortedArray[b - 1] = SortedArray[b];
                     b++;
                 }
-                tab1[b - 1] = a;
+                SortedArray[b - 1] = a;
             }
             var d4 = new Date();
-            var date4 = d4.getTime()
-            var sum2 = date4 - date3
-            var result2 = document.getElementById("result2").innerHTML = "Insert Sort lasted for: " + sum2 +
-                " Milliseconds ==> " + sum2 / 1000 +
+            var ExampleDate4 = d4.getTime()
+            var FinalDate2 = ExampleDate4 - ExampleDate3
+            var InsertResult = document.getElementById("result2").innerHTML = "Insert Sort lasted for: " + FinalDate2 +
+                " Milliseconds ==> " + FinalDate2 / 1000 +
                 "seconds"
         }
 
 
 
 
-        function qs_swap(tab1, i_p, i_k) {
-            var tab1 = rand(tab1);
+        function QSSwap(SortedArray, i_p, i_k) {
+            var SortedArray = rand(SortedArray);
 
-            var temp = tab1[i_p];
-            tab1[i_p] = tab1[i_k];
-            tab1[i_k] = temp;
+            var Temp = SortedArray[i_p];
+            SortedArray[i_p] = SortedArray[i_k];
+            SortedArray[i_k] = temp;
         }
 
-        function partition(tab1, left, right) {
-            var tab1 = rand(tab1);
-            var cntr = tab1[Math.floor((right + left) / 2)],
+        function partition(SortedArray, left, right) {
+            var SortedArray = rand(SortedArray);
+            var cntr = SortedArray[Math.floor((right + left) / 2)],
                 i = left,
                 j = right;
             while (i <= j) {
-                while (tab1[i] < cntr) {
+                while (SortedArray[i] < cntr) {
                     i++;
                 }
-                while (tab1[j] > cntr) {
+                while (SortedArray[j] > cntr) {
                     j--;
                 }
                 if (i <= j) {
-                    qs_swap(tab1, i, j);
+                    QSSwap(SortedArray, i, j);
                     i++;
                     j--;
                 }
@@ -96,26 +96,27 @@
             return i;
         }
 
-        function quickSort(tab1, left, right) {
+        function quickSort(SortedArray, left, right) {
             var d7 = new Date();
-            var date7 = d7.getTime()
-            var tab1 = rand(tab1);
+            var ExampleDate7 = d7.getTime()
+            var SortedArray = rand(SortedArray);
             var index;
-            if (tab1.length > 1) {
-                index = partition(tab1, left, right);
+            if (SortedArray.length > 1) {
+                index = partition(SortedArray, left, right);
                 if (left < index - 1) {
-                    quickSort(tab1, left, index - 1);
+                    quickSort(SortedArray, left, index - 1);
                 }
                 if (index < right) {
-                    quickSort(tab1, index, right);
+                    quickSort(SortedArray, index, right);
                 }
             }
 
             var d8 = new Date();
-            var date8 = d8.getTime()
-            var sum4 = date8 - date7;
-            var result4 = document.getElementById("result4").innerHTML = "Quick Sort lasted for: " + sum4 +
-                " Milliseconds ==> " + sum4 / 1000 +
+            var ExampleDate8 = d8.getTime()
+            var FinalDate4 = ExampleDate8 - ExampleDate7;
+            var QuicksortResult = document.getElementById("result4").innerHTML = "Quick Sort lasted for: " +
+                FinalDate4 +
+                " Milliseconds ==> " + FinalDate4 / 1000 +
                 "seconds"
 
 
@@ -129,12 +130,12 @@
         function main() {
             var i, t;
             var d5 = new Date();
-            var date5 = d5.getTime()
-            var tab1 = rand(tab1);
-            var N = tab1.length;
+            var ExampleDate5 = d5.getTime()
+            var SortedArray = rand(SortedArray);
+            var N = SortedArray.length;
             var p = new Array(N);
             for (i = 0; i < N; i++) {
-                tab1[i] = Math.floor(Math.random() * 10000 + 1)
+                SortedArray[i] = Math.floor(Math.random() * 10000 + 1)
             }
             MergeSort(0, N - 1);
 
@@ -146,15 +147,17 @@
                 i1 = left;
                 i2 = cntr;
                 for (i = left; i <= right; i++)
-                    p[i] = ((i1 == cntr) || ((i2 <= right) && (tab1[i1] > tab1[i2]))) ? tab1[i2++] : tab1[i1++];
-                for (i = left; i <= right; i++) tab1[i] = p[i];
+                    p[i] = ((i1 == cntr) || ((i2 <= right) && (SortedArray[i1] > SortedArray[i2]))) ? SortedArray[
+                    i2++] : SortedArray[i1++];
+                for (i = left; i <= right; i++) SortedArray[i] = p[i];
             }
             var d6 = new Date();
-            var date6 = d6.getTime()
-            var sum3 = date6 - date5;
+            var ExampleDate6 = d6.getTime()
+            var FinalDate3 = ExampleDate6 - ExampleDate5;
 
-            var result3 = document.getElementById("result3").innerHTML = "Merge Sort lasted for: " + sum3 +
-                " Milliseconds ==> " + sum3 / 1000 +
+            var MergeSortResult = document.getElementById("result3").innerHTML = "Merge Sort lasted for: " +
+                FinalDate3 +
+                " Milliseconds ==> " + FinalDate3 / 1000 +
                 "seconds";
         }
     </script>
