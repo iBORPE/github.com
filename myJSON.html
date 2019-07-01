@@ -125,12 +125,13 @@
 
 
         for (i = 0; i < data.length; i++) {
-                    if (data[i].assignee === "Jan Kowalski") {
-                        data[i].parent_id = 10
-                    }
-                    if (data[i].parent_id !== Number)
-                        data[i].parent_id = parseInt(data[i].parent_id)
-                }
+            if (data[i].assignee === "Jan Kowalski") {
+                data[i].parent_id = 10
+            }
+            if (data[i].parent_id !== Number) {
+                data[i].parent_id = parseInt(data[i].parent_id)
+            }
+        }
         data.sort(function (a, b) {
 
             return a.end_time.localeCompare(b.end_time);
@@ -142,10 +143,28 @@
         });
 
 
+
         for (i = 0; i < data.length; i++) {
+            var y = Date.parse(data[i].end_time)
+            y = y / 1000;
+            y = y / 3600;
+            y = y / 24;
+            var x = Date.parse(data[i].start_time)
+            x = x / 1000;
+            x = x / 3600;
+            x = x / 24;
+            var DaySum=new Array(data.length); ;
+            DaySum[i] = y - x;
+
+            DaySum[i] = DaySum[i] + 1;
+
+            var StartDay = new Array(data.length); 
+            StartDay[i] = Date.parse(data[i].start_time) - Date.parse(data[0].start_time);
+            StartDay[i] = StartDay[i]/86400000+1;
+
             document.write("Nazwa pracownika: " + data[i].assignee + "<br>" + "Wykonane zadanie: " + data[i].name +
-                "<br>" + "Data rozpoczęcia: " + data[i].start_time + "<br>" + "Data zakońcenia: " + data[i]
-                .end_time + "<br>" + "ID_Rodzica: " + data[i].parent_id + "<br>" + "ID_Dziecka: " + data[i].id +
+                "<br>" + "Czas pracy (dni): " + DaySum[i] +"<br> Dzien od rozpoczęcia: "+StartDay[i]+ "<br>" + "ID_Rodzica: " + data[i].parent_id + "<br>" +
+                "ID_Dziecka: " + data[i].id +
                 "<br><br>");
 
         }
