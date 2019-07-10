@@ -139,7 +139,18 @@ for (var j = 0; j < data.length; j++) {
 		}
 
 	}
+}
 
+
+function TaskList() {
+
+	for (i = 1; i <= 25; i++) {
+
+		var SortedTaskList = document.createElement('li');
+		SortedTaskList.innerHTML = data[i].name;
+		document.getElementById("HeadLineTask").appendChild(SortedTaskList);
+
+	}
 
 
 
@@ -150,7 +161,7 @@ function TimeLineBG() {
 	for (i = 1; i <= 25; i++) {
 		var LeftBand = document.createElement('div');
 
-		LeftBand.style.height = "100vh";
+		LeftBand.style.height = "1000px";
 		LeftBand.style.width = "3.84%";
 		LeftBand.style.backgroundColor = "rgb(40, 40, 40)";
 		LeftBand.style.float = "left";
@@ -162,7 +173,7 @@ function TimeLineBG() {
 		document.body.appendChild(LeftBand);
 		i++
 		var RightBand = document.createElement('div');
-		RightBand.style.height = "100vh";
+		RightBand.style.height = "1000px";
 		RightBand.style.width = "3.85%";
 		RightBand.style.backgroundColor = "rgb(50, 50, 50)";
 		RightBand.style.float = "left";
@@ -173,6 +184,9 @@ function TimeLineBG() {
 
 		document.body.appendChild(RightBand);
 	}
+}
+
+function DrawnTimeLine() {
 	for (i = 0; i < data.length; i++) {
 		var TimeLinerequest1 = document.createElement('div');
 		TimeLinerequest1.innerHTML = data[i].name;
@@ -187,12 +201,7 @@ function TimeLineBG() {
 		TimeLinerequest1.style.width = DaySum[i] * 3.85 + "%";
 		TimeLinerequest1.style.backgroundColor = "rgb( 0, 0, 255, 50%)";
 		TimeLinerequest1.style.position = "absolute";
-
-
 		TimeLinerequest1.style.top = 50 * (i + 1) + "px";
-
-
-
 		TimeLinerequest1.style.left = StartDay[i] * 3.85 + "%"
 		TimeLinerequest1.style.color = "white"
 		TimeLinerequest1.style.fontFamily = "Corbel"
